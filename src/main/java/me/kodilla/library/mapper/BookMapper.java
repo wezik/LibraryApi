@@ -19,11 +19,11 @@ public class BookMapper {
         );
     }
 
-    public BookDto mapToBookDto(final Book o) {
+    public BookDto mapToBookDto(final Book book) {
         return new BookDto(
-                o.getId(),
-                o.getTitle().getId(),
-                o.getBookState()
+                book.getId(),
+                book.getTitle().getId(),
+                book.getBookState()
         );
     }
 

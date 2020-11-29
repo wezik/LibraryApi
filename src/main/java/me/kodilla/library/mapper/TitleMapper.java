@@ -9,21 +9,21 @@ import java.util.stream.Collectors;
 
 @Service
 public class TitleMapper {
-    public Title mapToTitle(TitleDto o) {
+    public Title mapToTitle(TitleDto titleDto) {
         return new Title(
-                o.getId(),
-                o.getTitle(),
-                o.getAuthor(),
-                o.getReleaseDate()
+                titleDto.getId(),
+                titleDto.getTitle(),
+                titleDto.getAuthor(),
+                titleDto.getReleaseDate()
         );
     }
 
-    public TitleDto mapToTitleDto(Title o) {
+    public TitleDto mapToTitleDto(Title title) {
         return new TitleDto(
-                o.getId(),
-                o.getTitle(),
-                o.getAuthor(),
-                o.getReleaseDate()
+                title.getId(),
+                title.getTitle(),
+                title.getAuthor(),
+                title.getReleaseDate()
         );
     }
 

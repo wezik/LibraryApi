@@ -9,21 +9,21 @@ import java.util.stream.Collectors;
 
 @Service
 public class BorrowerMapper {
-    public Borrower mapToBorrower(final BorrowerDto o) {
+    public Borrower mapToBorrower(final BorrowerDto borrowerDto) {
         return new Borrower(
-                o.getId(),
-                o.getName(),
-                o.getLastName(),
-                o.getCreated()
+                borrowerDto.getId(),
+                borrowerDto.getName(),
+                borrowerDto.getLastName(),
+                borrowerDto.getCreated()
         );
     }
 
-    public BorrowerDto mapToBorrowerDto(final Borrower o) {
+    public BorrowerDto mapToBorrowerDto(final Borrower borrower) {
         return new BorrowerDto(
-                o.getId(),
-                o.getName(),
-                o.getLastName(),
-                o.getCreated()
+                borrower.getId(),
+                borrower.getName(),
+                borrower.getLastName(),
+                borrower.getCreated()
         );
     }
 

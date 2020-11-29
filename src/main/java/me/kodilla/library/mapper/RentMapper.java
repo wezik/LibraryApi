@@ -21,13 +21,13 @@ public class RentMapper {
         );
     }
 
-    public RentDto mapToRentDto(final Rent o) {
+    public RentDto mapToRentDto(final Rent rent) {
         return new RentDto(
-                o.getId(),
-                o.getBook().getId(),
-                o.getBorrower().getId(),
-                o.getBorrowDate(),
-                o.getReturnDate()
+                rent.getId(),
+                rent.getBook().getId(),
+                rent.getBorrower().getId(),
+                rent.getBorrowDate(),
+                rent.getReturnDate()
         );
     }
 
