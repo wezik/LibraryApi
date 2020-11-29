@@ -95,13 +95,15 @@ public class LibraryController {
 
     @PostMapping(value = "createBook")
     public void createBook(@RequestBody BookDto bookDto) throws TitleNotFoundException {
-        Book book = bookMapper.mapToBook(bookDto);
+        Title title = service.getTitle(bookDto.getTitle_id()).orElseThrow(TitleNotFoundException::new);
+        Book book = bookMapper.mapToBook(bookDto,title);
         service.saveBook(book);
     }
 
     @PutMapping(value = "updateBook")
     public BookDto updateBook(@RequestBody BookDto bookDto) throws TitleNotFoundException {
-        Book book = bookMapper.mapToBook(bookDto);
+        Title title = service.getTitle(bookDto.getTitle_id()).orElseThrow(TitleNotFoundException::new);
+        Book book = bookMapper.mapToBook(bookDto,title);
         Book savedBook = service.saveBook(book);
         return bookMapper.mapToBookDto(savedBook);
     }
@@ -169,13 +171,17 @@ public class LibraryController {
 
     @PostMapping(value = "createRent")
     public void createRent(@RequestBody RentDto rentDto) throws BookNotFoundException, BorrowerNotFoundException {
-        Rent rent = rentMapper.mapToRent(rentDto);
+        Book book = service.getBook(rentDto.getBook_id()).orElseThrow(BookNotFoundException::new);
+        Borrower borrower = service.getBorrower(rentDto.getBorrower_id()).orElseThrow(BorrowerNotFoundException::new);
+        Rent rent = rentMapper.mapToRent(rentDto,book,borrower);
         service.saveRent(rent);
     }
 
     @PutMapping(value = "updateRent")
     public RentDto updateRent(@RequestBody RentDto rentDto) throws BookNotFoundException, BorrowerNotFoundException {
-        Rent rent = rentMapper.mapToRent(rentDto);
+        Book book = service.getBook(rentDto.getBook_id()).orElseThrow(BookNotFoundException::new);
+        Borrower borrower = service.getBorrower(rentDto.getBorrower_id()).orElseThrow(BorrowerNotFoundException::new);
+        Rent rent = rentMapper.mapToRent(rentDto,book,borrower);
         Rent savedRent = service.saveRent(rent);
         return rentMapper.mapToRentDto(savedRent);
     }
